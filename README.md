@@ -80,4 +80,4 @@ npx cap open android
 
 ## DevOps Documentation
 
-- [CI/CD + Deployment Pipeline Blueprint](docs/CI_CD_DEPLOYMENT_BLUEPRINT.md)
+- [Enterprise CI/CD + Deployment Blueprint (DevSecOps + LLMOps)](docs/CI_CD_DEPLOYMENT_BLUEPRINT.md)
