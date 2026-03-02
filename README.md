@@ -77,3 +77,7 @@ npx cap open android
 
 - โฟลเดอร์ `android/` มีโปรเจกต์เนทีฟสำหรับ build แอป Android
 - Bluetooth และความสามารถบางอย่างของ Capacitor ต้องทดสอบบนอุปกรณ์จริงหรือ emulator ที่รองรับ
+
+## DevOps Documentation
+
+- [Enterprise CI/CD + Deployment Blueprint (DevSecOps + LLMOps)](docs/CI_CD_DEPLOYMENT_BLUEPRINT.md)
