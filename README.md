@@ -1,156 +1,79 @@
-# 🚘 ATR Auto AI - Automotive Diagnostic System
+# ATR-AI-AUTO
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-Private-red.svg)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Platform](https://img.shields.io/badge/platform-Android-3DDC84.svg?logo=android&logoColor=white)
+เว็บแอปสำหรับมอนิเตอร์ข้อมูลรถยนต์และการวิเคราะห์เชิงวินิจฉัย โดยออกแบบให้ใช้งานได้ทั้งบนเบราว์เซอร์ (โหมดพัฒนา/จำลองข้อมูล) และบน Android ผ่าน Capacitor
 
-> **Professional-grade automotive diagnostics powered by Engineering Logic & AI.** > *Designed specifically for Toyota Vigo Champ (1KD-FTV) & Isuzu D-Max.*
+## คุณสมบัติหลัก
 
----
+- Dashboard หลักแบบ GunUI สำหรับสรุปสถานะเครื่องยนต์และความเสี่ยง
+- หน้าจอ Live Monitor สำหรับดูข้อมูลแบบเรียลไทม์
+- หน้าจอ DTC Scanner สำหรับจัดการโค้ดปัญหา
+- หน้า Reports สำหรับดูสรุปผลย้อนหลัง
+- ระบบ Subscription สำหรับแยกสิทธิ์การใช้งาน
+- รองรับหลายภาษา (EN/TH) ผ่าน utility i18n
+- มี Simulation Engine สำหรับจำลองสถานะปกติและสถานะผิดปกติของระบบ
 
-## 📖 Overview
+## Tech Stack
 
-**ATR Auto AI** combines real-time data monitoring with engineering-level analysis to detect critical failures before they cause catastrophic engine damage. Unlike standard OBD2 apps, this system uses proprietary protocols (Toyota Mode 21) to analyze **Common Rail Pressure** and **Injector Feedback** with high precision.
+- React 19 + Vite 7
+- React Router 7
+- Tailwind CSS 4
+- Capacitor 8 (Android)
+- Recharts, Framer Motion, Lucide React
 
-The project features a sci-fi inspired **"GunUI" Dashboard**, built for cross-platform deployment using **React 19**, **Vite**, and **Capacitor 8**.
+## โครงสร้างโปรเจกต์ (ย่อ)
 
-![GunUI Dashboard Preview](https://via.placeholder.com/800x400?text=ATR+Auto+AI+Dashboard+Preview)
-
----
-
-## 🚀 Key Features
-
-### 🧠 Engineering Core ("The Brain")
-* **Deep Protocol Support**: Decodes Toyota Mode 21 & Isuzu proprietary PIDs.
-* **Real-time Analysis**:
-    * **SCV Sticking Detection**: Monitors rail pressure fluctuation at idle to predict Suction Control Valve failure.
-    * **Piston Health Monitor**: Alerts when injector feedback exceeds safety thresholds (±3.0 mm³/st).
-* **Tiered Access System**:
-    * **Free Tier**: Standard OBD2 data (RPM, Speed, Coolant).
-    * **Pro Tier**: Unlocks engineering data, critical alerts, and full "GunUI" experience.
-
-### 💻 GunUI Dashboard
-* **Visual Schematic**: Animated wireframe visualization of the vehicle chassis.
-* **Risk-Adaptive Color System**:
-    * 🟢 **Normal**: System nominal.
-    * 🟡 **Warning**: SCV instability detected.
-    * 🔴 **Critical**: Injector failure risk / Piston crack warning.
-* **High-Performance**: SVG-based visualizations using `recharts` running at 60fps.
-
-### 🛠 Connectivity & Simulation
-* **Bluetooth OBD2**: Native Android Bluetooth integration.
-* **Built-in Simulator**:
-    * `SIM: NORMAL` - Healthy engine parameters.
-    * `SIM: SCV_FAULT` - Erratic rail pressure (Sawtooth wave).
-    * `SIM: INJECTOR_FAULT` - Injector failure on Cylinder 3.
-
----
-
-## 🏗 Tech Stack
-
-| Category | Technology | Version |
-| :--- | :--- | :--- |
-| **Frontend** | React + Vite | v19 / v6 |
-| **Styling** | Tailwind CSS | v4.0 |
-| **Mobile Runtime** | Capacitor (Android) | v8.0 |
-| **State Management** | React Context API | - |
-| **CI/CD** | GitHub Actions | - |
-| **Language** | JavaScript (ESNext) | - |
-
----
-
-## 📂 Project Structure
-
-```bash
+```text
 src/
-├── components/        # UI Components (Buttons, Cards, LockOverlay)
-├── config/            # Engineering Specs (Isuzu & Toyota Thresholds)
-├── context/           # Global State (Vehicle Data, User Tier, OBD Connection)
-├── engine/            # [THE BRAIN] Diagnostic Logic & Enforcers
-├── pages/             # App Pages (GunUI Dashboard, DTC Scanner)
-├── services/          # Bluetooth Services & Simulation Logic
-└── utils/             # Utilities (i18n, formatting)
-
+├── components/   # คอมโพเนนต์ UI และเลย์เอาต์
+├── context/      # User / Vehicle / OBD state
+├── engine/       # แกนวิเคราะห์ + parser/analyzer
+├── pages/        # Dashboard, Live, DTC, Reports, Subscription
+├── services/     # Bluetooth service
+├── utils/        # constants, i18n, helper functions
+└── config/       # สเปคและเกณฑ์การวิเคราะห์รถ
 ```
 
----
+## การเริ่มต้นใช้งาน
 
-## 📱 Installation & Setup
-
-### Prerequisites
-
-* **Node.js**: v22.0.0+ (Required for Capacitor 8)
-* **Java**: JDK 21 (Required for Android SDK 36)
-
-### 1. Clone & Install
+### 1) ติดตั้ง dependencies
 
 ```bash
-git clone [https://github.com/your-repo/ATR-AI-AUTO.git](https://github.com/your-repo/ATR-AI-AUTO.git)
-cd ATR-AI-AUTO
 npm install
-
 ```
 
-### 2. Run in Browser (Simulation Mode)
+### 2) รันโหมดพัฒนา
 
 ```bash
 npm run dev
-
 ```
 
-*Open `http://localhost:5173` to test the UI and Simulation features.*
+จากนั้นเปิด `http://localhost:5173`
 
-### 3. Build for Android
+### 3) ตรวจโค้ดก่อนปล่อย
 
 ```bash
-# 1. Build web assets
+npm run lint
 npm run build
+```
 
-# 2. Sync with Android project
+## Android (Capacitor)
+
+หลังจาก build เว็บแล้ว สามารถซิงก์โปรเจกต์ Android ได้ด้วย:
+
+```bash
+npm run build
 npx cap sync android
-
-# 3. Open in Android Studio
 npx cap open android
-
 ```
 
----
+## คำสั่งที่ใช้บ่อย
 
-## 🤖 Automated Build (CI/CD)
+- `npm run dev` เริ่ม development server
+- `npm run lint` ตรวจมาตรฐานโค้ด
+- `npm run build` สร้างไฟล์ production
+- `npm run preview` พรีวิว build ในเครื่อง
 
-This repository utilizes **GitHub Actions** to automatically build the Android APK.
+## หมายเหตุ
 
-1. Push changes to `main` branch.
-2. Navigate to **Actions** tab in GitHub.
-3. Select **"Build Android APK"** workflow.
-4. Download the artifact `ATR-Auto-AI-App.zip` once completed.
-5. Install `app-debug.apk` on your device.
-
----
-
-## ⚙️ Engineering Specifications
-
-* **Target Engines**: 1KD-FTV (3.0L), 2KD-FTV (2.5L), Isuzu 4JJ1/1.9 Blue Power.
-* **Rail Pressure Target**: 35,000 ± 2,000 kPa (Idle).
-* **Injector Feedback Limit**: ± 3.0 mm³/st (Safety Cutoff).
-
----
-
-## 👥 Credits & Status
-
-**Project Status**: ✅ **Completed** (Build Passing)
-
-**Achieved On**: Monday, January 12, 2026 | 06:29 AM
-
-### Developed By
-
-* **Gemini** - *AI Co-Pilot & Code Consultant*
-
----
-
-*© 2026 ATR Auto AI. All rights reserved.*
-
-```
-
-```
+- โฟลเดอร์ `android/` มีโปรเจกต์เนทีฟสำหรับ build แอป Android
+- Bluetooth และความสามารถบางอย่างของ Capacitor ต้องทดสอบบนอุปกรณ์จริงหรือ emulator ที่รองรับ
