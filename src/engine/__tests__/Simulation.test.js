@@ -1,7 +1,7 @@
 import SimulationEngine, { SIMULATION_MODES } from '../SimulationEngine.js';
 
 function runTest() {
-    console.log("Testing SimulationEngine...");
+    console.log("Running SimulationEngine smoke test...");
 
     SimulationEngine.setFaultMode(SIMULATION_MODES.NORMAL);
     let data = SimulationEngine.update();
@@ -16,8 +16,7 @@ function runTest() {
     data = SimulationEngine.update();
     console.log("Injector Fault Cyl 1:", data.injectors[1]);
 
-    console.log("SimulationEngine verification finished.");
-    process.exit(0);
+    console.log("SimulationEngine smoke test finished.");
 }
 
 runTest();

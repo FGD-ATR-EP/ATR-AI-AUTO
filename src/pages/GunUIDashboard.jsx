@@ -27,11 +27,10 @@ const SchematicVisualizer = ({ riskLevel, active }) => {
 
   useEffect(() => {
     let interval;
-    // Always animate if there is data (even simulated)
-    if (true) {
-       interval = setInterval(() => {
-         setDrawPct(prev => Math.min(prev + 2, 100));
-       }, 30);
+    if (active) {
+      interval = setInterval(() => {
+        setDrawPct(prev => Math.min(prev + 2, 100));
+      }, 30);
     }
 
     return () => {
@@ -113,10 +112,10 @@ const GunUIDashboard = () => {
   const [overlayMode, setOverlayMode] = useState(false);
 
   // Derived State from Context
-  const riskLevel =
-      diagnosticStatus.fuelSystem.status === 'CRITICAL' ? 'CRITICAL' :
-      diagnosticStatus.railSystem.status === 'WARNING' ? 'WARNING' :
-      'NORMAL';
+  const fuelStatus = diagnosticStatus?.fuelSystem?.status ?? 'NORMAL';
+  const railStatus = diagnosticStatus?.railSystem?.status ?? 'NORMAL';
+  const severityRank = { NORMAL: 0, WARNING: 1, CRITICAL: 2 };
+  const riskLevel = severityRank[fuelStatus] >= severityRank[railStatus] ? fuelStatus : railStatus;
 
   const connectionStatus = isConnected ? 'CONNECTED' : 'DISCONNECTED';
 
@@ -200,8 +199,8 @@ const GunUIDashboard = () => {
                 <span className="text-slate-500 font-bold border-b border-slate-700 pb-1 mb-1">VEHICLE PROFILE</span>
                 <span className="text-white font-bold text-lg">TOYOTA VIGO CHAMP</span>
                 <span style={{ color: getColor() }}>ENGINE: 1KD-FTV (3.0L D-4D)</span>
-                <span className="text-slate-400">INDUCTION: VN TURBO INTERCOOLER</span>
-                <span className="text-slate-400">FUEL: COMMONRAIL GEN 2</span>
+                <span className="text-slate-400">INDUCTION: VNT TURBO INTERCOOLER</span>
+                <span className="text-slate-400">FUEL: COMMON RAIL GEN 2</span>
               </div>
             </div>
 
