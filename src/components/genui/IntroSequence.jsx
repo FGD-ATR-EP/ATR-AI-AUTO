@@ -1,19 +1,19 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const IntroSequence = ({ onComplete }) => {
   const [textVisible, setTextVisible] = useState(false);
 
   // Note: Browsers block autoplay without interaction.
-  // We'll try to play, but silence errors if it fails.
+  // Try to play audio and quietly ignore autoplay failures.
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // 1. Play Sound (Low Volume) - Mocking audio play
+    // 1. Play sound at low volume
     if(audioRef.current) {
       audioRef.current.volume = 0.3;
-      audioRef.current.play().catch(e => {
-        // console.log("Audio autoplay blocked (expected in non-interactive demo)", e);
+      audioRef.current.play().catch(() => {
+        // Expected in non-interactive environments.
       });
     }
 
@@ -28,8 +28,7 @@ const IntroSequence = ({ onComplete }) => {
 
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50 overflow-hidden">
-      {/* Mock Audio Element */}
-      {/* In real prod, src would be valid. Here we might get 404 but logic holds. */}
+      {/* Audio element (file may be unavailable in some development setups). */}
       <audio ref={audioRef} src="/assets/sounds/wing_whisper.mp3" />
 
       {/* Light Effect (The "Wing" visual) */}

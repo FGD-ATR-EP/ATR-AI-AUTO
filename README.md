@@ -1,10 +1,10 @@
 # ATR-AI-AUTO
 
-เว็บแอปสำหรับมอนิเตอร์ข้อมูลรถยนต์และการวิเคราะห์เชิงวินิจฉัย โดยออกแบบให้ใช้งานได้ทั้งบนเบราว์เซอร์ (โหมดพัฒนา/จำลองข้อมูล) และบน Android ผ่าน Capacitor
+เว็บแอปสำหรับมอนิเตอร์ข้อมูลรถยนต์และวิเคราะห์เชิงวินิจฉัย ออกแบบให้ใช้งานได้ทั้งบนเบราว์เซอร์ (โหมดพัฒนา/จำลองข้อมูล) และบน Android ผ่าน Capacitor
 
 ## คุณสมบัติหลัก
 
-- Dashboard หลักแบบ GunUI สำหรับสรุปสถานะเครื่องยนต์และความเสี่ยง
+- Dashboard หลักแบบ GunUI สำหรับสรุปสถานะเครื่องยนต์และระดับความเสี่ยง
 - หน้าจอ Live Monitor สำหรับดูข้อมูลแบบเรียลไทม์
 - หน้าจอ DTC Scanner สำหรับจัดการโค้ดปัญหา
 - หน้า Reports สำหรับดูสรุปผลย้อนหลัง
@@ -49,7 +49,7 @@ npm run dev
 
 จากนั้นเปิด `http://localhost:5173`
 
-### 3) ตรวจโค้ดก่อนปล่อย
+### 3) ตรวจสอบคุณภาพโค้ดก่อนปล่อย
 
 ```bash
 npm run lint
@@ -71,12 +71,19 @@ npx cap open android
 - `npm run dev` เริ่ม development server
 - `npm run lint` ตรวจมาตรฐานโค้ด
 - `npm run build` สร้างไฟล์ production
-- `npm run preview` พรีวิว build ในเครื่อง
+- `npm run preview` พรีวิว build บนเครื่อง
 
 ## หมายเหตุ
 
 - โฟลเดอร์ `android/` มีโปรเจกต์เนทีฟสำหรับ build แอป Android
-- Bluetooth และความสามารถบางอย่างของ Capacitor ต้องทดสอบบนอุปกรณ์จริงหรือ emulator ที่รองรับ
+- Bluetooth และความสามารถบางอย่างของ Capacitor ควรทดสอบบนอุปกรณ์จริงหรือ emulator ที่รองรับ
+- มีการลบรายการข้อเสนอแนะที่ดำเนินการเสร็จแล้วออกจากเอกสาร เพื่อไม่ให้ปะปนกับงานที่ยังเปิดอยู่
+
+## Notes (EN)
+
+- This repository includes a browser simulation mode and Android packaging support through Capacitor.
+- The Live Monitor page now renders a sample Recharts line graph instead of placeholder text.
+- Completed suggestion items have been removed so only active work remains in the project backlog/documentation.
 
 ## DevOps Documentation
 
